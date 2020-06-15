@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:servermanager/app/locator.dart';
+import 'package:servermanager/models/app_settings.dart';
 
 void main() {
   initLocator();
@@ -20,7 +21,15 @@ class App extends StatelessWidget {
       ),
       home: Scaffold(
         body: Center(
-          child: Text("Hello World!"),
+          child: FutureBuilder(
+            future: locator.isReady<AppSettings>(),
+            builder: (_, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done)
+                return Text(locator<AppSettings>().testString);
+
+              return CircularProgressIndicator();
+            },
+          ),
         ),
       ),
     );
