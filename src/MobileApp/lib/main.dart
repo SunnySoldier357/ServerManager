@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:servermanager/services/wake_on_lan_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:servermanager/app/locator.dart';
-import 'package:servermanager/models/app_settings.dart';
 
 void main() {
   initLocator();
@@ -21,14 +21,9 @@ class App extends StatelessWidget {
       ),
       home: Scaffold(
         body: Center(
-          child: FutureBuilder(
-            future: locator.isReady<AppSettings>(),
-            builder: (_, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done)
-                return Text(locator<AppSettings>().testString);
-
-              return CircularProgressIndicator();
-            },
+          child: FlatButton(
+            child: Text("Send Wake on LAN Packet"),
+            onPressed: () => locator<WakeOnLanService>().sendPacketAsync(),
           ),
         ),
       ),

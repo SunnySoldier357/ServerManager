@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:servermanager/models/app_settings.dart';
+import 'package:servermanager/models/config/app_settings.dart';
 
 class ConfigService {
   //* Constants
