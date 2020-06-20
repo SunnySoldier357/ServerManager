@@ -8,7 +8,7 @@ class WakeOnLanService {
   AppSettings _appSettings;
 
   //* Public Methods
-  void sendPacketAsync() async {
+  Future<void> sendPacketAsync() async {
     //* Make sure that AppSettings has been initialised
     await locator.isReady<AppSettings>();
 
