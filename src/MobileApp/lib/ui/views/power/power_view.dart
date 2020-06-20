@@ -10,10 +10,38 @@ class PowerView extends StatelessWidget {
       viewModelBuilder: () => PowerViewModel(),
       builder: (_, vm, __) {
         return Scaffold(
-          body: Center(
-            child: FlatButton(
-              child: Text("Send Wake on LAN Packet"),
-              onPressed: () async => await vm.turnOnServerAsync(),
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 15),
+                Text(
+                  "Server Manager",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.orange,
+                          width: 5,
+                        ),
+                      ),
+                      child: IconButton(
+                        padding: EdgeInsets.all(25),
+                        icon: Icon(Icons.power_settings_new),
+                        iconSize: 44,
+                        onPressed: () async => await vm.turnOnServerAsync(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );
